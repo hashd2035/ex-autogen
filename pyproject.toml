@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "autogenex"
+version = "0.1.0"
+description = ""
+authors = ["James Kim <kimdjame@amazon.com>"]
+readme = "README.md"
+packages = [{include = "autogenex"}]
+
+[tool.poetry.dependencies]
+python = ">=3.12.5,<3.13"
+pyautogen = "^0.3.0"
+pydantic = "^2.9.2"
+python-dotenv = "^1.0.1"
+wandb = "^0.18.1"
+ipykernel = "^6.29.5"
+jupyter = "^1.1.1"
+jupyterlab = "^4.2.5"
