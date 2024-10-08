@@ -2,7 +2,7 @@
 name = "autogenex"
 version = "0.1.0"
 description = ""
-authors = ["James Kim <kimdjame@amazon.com>"]
+authors = ["James Kim <hashd2035@gmail.com>"]
 readme = "README.md"
 packages = [{include = "autogenex"}]
 

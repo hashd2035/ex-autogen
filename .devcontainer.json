@@ -1,0 +1,15 @@
+{
+    "name": "Python Development",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12",
+    "postCreateCommand": "curl https://pyenv.run | bash && source ~/.bashrc && pyenv install 3.12.5 && pyenv global 3.12.5",
+    "features": {
+      "ghcr.io/devcontainers/features/pyenv:1": {}
+    },
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "extensions": [
+      "ms-python.python",
+      "ms-python.vscode-pylance"
+    ]
+  }
