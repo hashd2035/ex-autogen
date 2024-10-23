@@ -17,7 +17,14 @@
 	"customizations": {
         "vscode": {
 			"settings": {},
-            "extensions":["ms-python.python", "njpwerner.autodocstring"]
+            "extensions":[
+				"ms-python.python",
+				"njpwerner.autodocstring",
+				"ms-azuretools.vscode-docker",
+				"ms-toolsai.jupyter",
+				"ms-toolsai.vscode-jupyter-cell-tags",
+				"ms-toolsai.jupyter-keymap"
+			]
 		}
 	},
 	"remoteEnv": {
