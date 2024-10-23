@@ -1,40 +1,45 @@
-FROM mcr.microsoft.com/devcontainers/python:1-3.11-bullseye
+FROM mcr.microsoft.com/devcontainers/base:jammy
+# FROM mcr.microsoft.com/devcontainers/base:jammy 
 
-# Install dependencies required for pyenv
-RUN apt-get update && apt-get install -y \
-    make build-essential libssl-dev zlib1g-dev \
-    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-    libncurses5-dev libncursesw5-dev xz-utils tk-dev \
-    libffi-dev liblzma-dev python3-openssl git \
-    && rm -rf /var/lib/apt/lists/*
+ARG DEBIAN_FRONTEND=noninteractive
+ARG USER=vscode
 
-# Install pyenv
-RUN curl https://pyenv.run | bash
+RUN DEBIAN_FRONTEND=noninteractive \
+    && apt-get update \ 
+    && apt-get install -y build-essential --no-install-recommends make \
+        ca-certificates \
+        git \
+        libssl-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        libreadline-dev \
+        libsqlite3-dev \
+        wget \
+        curl \
+        llvm \
+        libncurses5-dev \
+        xz-utils \
+        tk-dev \
+        libxml2-dev \
+        libxmlsec1-dev \
+        libffi-dev \
+        liblzma-dev
 
-# Add pyenv to PATH and initialize it
-ENV PATH="/root/.pyenv/bin:$PATH"
-RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc && \
-    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc && \
-    echo 'eval "$(pyenv init --path)"' >> ~/.bashrc && \
-    echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+# Python and poetry installation
+USER $USER
+ARG HOME="/home/$USER"
+ARG PYTHON_VERSION=3.10
+# ARG PYTHON_VERSION=3.10
 
-# Make sure pyenv is available to subsequent Docker commands
-SHELL ["/bin/bash", "-c"]
+ENV PYENV_ROOT="${HOME}/.pyenv"
+ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:${HOME}/.local/bin:$PATH"
 
-# Install Python version using pyenv (optional)
-RUN pyenv install 3.11.5 \
-    && pyenv global 3.11.5
-
-ENV PYTHONUNBUFFERED 1
-
-# [Optional] If your requirements rarely change, uncomment this section to add them to the image.
-# COPY requirements.txt /tmp/pip-tmp/
-# RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
-#    && rm -rf /tmp/pip-tmp
-
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
-
-
-
+RUN echo "done 0" \
+    && curl https://pyenv.run | bash \
+    && echo "done 1" \
+    && pyenv install ${PYTHON_VERSION} \
+    && echo "done 2" \
+    && pyenv global ${PYTHON_VERSION} \
+    && echo "done 3" \
+    && curl -sSL https://install.python-poetry.org | python3 - \
+    && poetry config virtualenvs.in-project true
