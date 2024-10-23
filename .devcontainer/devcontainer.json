@@ -34,8 +34,10 @@
 		"ghcr.io/devcontainers/features/aws-cli:1": {},
 		"ghcr.io/devcontainers-extra/features/aws-cdk:2": {},
 		"ghcr.io/devcontainers-extra/features/pipx-package:1": {}
-	}
+	},
 
 	// 👇 Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
+
+	"postCreateCommand": "poetry install && echo 'source $(poetry env info --path)/bin/activate' >> ~/.bashrc"
 }
