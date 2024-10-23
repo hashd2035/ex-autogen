@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-class llm_configs:
-    class open_ai:
+class LlmConfigs:
+    class OpenAi:
         gpt4 = {
             "config_list": [
                 {
@@ -15,5 +15,7 @@ class llm_configs:
                 }
             ]
         }
+
+
 
         

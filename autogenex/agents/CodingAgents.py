@@ -3,7 +3,7 @@ from autogen import ConversableAgent
 from configs import CodeExecutionConfig
 
 
-class Agent:
+class CodingAgents:
     DockerCodeExecutor = ConversableAgent(
         "code_executor_agent_docker",
         llm_config=False,
