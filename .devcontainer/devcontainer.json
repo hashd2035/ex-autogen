@@ -16,7 +16,12 @@
 	// 👇 Configure tool-specific properties.
 	"customizations": {
         "vscode": {
-			"settings": {},
+			"settings": {
+				"remote.autoForwardPorts": false,
+				"terminal.integrated.shell.linux": "/bin/bash",
+				"extensions.autoCheckUpdates": false,
+				"extensions.autoUpdate": false
+			},
             "extensions":[
 				"ms-python.python",
 				"njpwerner.autodocstring",
