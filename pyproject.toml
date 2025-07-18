@@ -8,7 +8,7 @@ packages = [{include = "autogenex"}]
 
 [tool.poetry.dependencies]
 python = ">=3.12.5,<3.13"
-pyautogen = "^0.3.0"
+ag2 = "^0.3.0"
 pydantic = "^2.9.2"
 python-dotenv = "^1.0.1"
 wandb = "^0.18.1"
